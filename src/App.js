@@ -3,14 +3,20 @@ import { fetchMeal } from "./Services/api";
 import _debounce from "lodash.debounce";
 import Searchbar from "./Components/Searchbar/Searchbar";
 import { useEffect, useState } from "react";
+import MealsList from "./Components/MealsList/MealsList";
 
 function App() {
-	const [query, setQuery] = useState();
+	const [query, setQuery] = useState("");
+	const [meals, setMeals] = useState([]);
 
 	const fetchByQuery = async (query) => {
 		try {
-			const meals = await fetchMeal("name", query);
-			console.log(meals);
+			const fetchedMeals = await fetchMeal("name", query);
+			if (fetchedMeals) {
+				console.log(fetchedMeals);
+				setMeals([]);
+				setMeals((meals) => [...meals, ...fetchedMeals]);
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -18,8 +24,10 @@ function App() {
 
 	const fetchRandom = async () => {
 		try {
-			const meal = await fetchMeal("random");
-			console.log(meal);
+			const randomMeal = await fetchMeal("random");
+			console.log(randomMeal);
+			setMeals([]);
+			setMeals((meals) => [...meals, ...randomMeal]);
 		} catch (error) {
 			console.log(error);
 		}
@@ -44,6 +52,7 @@ function App() {
 			<section>
 				<div className="container">
 					<Searchbar onChangeHandler={_debounce(setQueryFromSerchbar, 600)}></Searchbar>
+					<MealsList data={meals}></MealsList>
 				</div>
 			</section>
 		</main>
