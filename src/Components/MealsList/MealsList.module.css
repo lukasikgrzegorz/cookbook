@@ -1,0 +1,8 @@
+.mealslist{
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  margin: auto;
+  column-gap: 20px;
+}

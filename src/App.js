@@ -52,6 +52,10 @@ function App() {
 			<section>
 				<div className="container">
 					<Searchbar onChangeHandler={_debounce(setQueryFromSerchbar, 600)}></Searchbar>
+				</div>
+			</section>
+			<section>
+				<div className="container">
 					<MealsList data={meals}></MealsList>
 				</div>
 			</section>
