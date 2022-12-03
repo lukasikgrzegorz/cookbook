@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { fetchMeal } from "./Services/api";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const fetchByQuery = async () => {
+		try {
+			const meals = await fetchMeal();
+			console.log(meals);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	fetchByQuery();
+
+	return <></>;
 }
 
 export default App;
