@@ -2,18 +2,23 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { fetchMeal } from "./Services/api";
 import _debounce from "lodash.debounce";
+import Loader from "./Components/Loader/Loader";
 import Header from "./Components/Header/Header";
 import Searchbar from "./Components/Searchbar/Searchbar";
 import MealsList from "./Components/MealsList/MealsList";
 import Modal from "./Components/Modal/Modal";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
 	const [query, setQuery] = useState("");
 	const [meals, setMeals] = useState([]);
 	const [modal, openModal] = useState(false);
 	const [modalData, setModalData] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
+	const [firstTime, setFirstTime] = useState(true);
 
 	const fetchByQuery = async (query) => {
+		setIsLoading(true);
 		try {
 			const fetchedMeals = await fetchMeal("name", query);
 			if (fetchedMeals) {
@@ -22,10 +27,13 @@ function App() {
 			}
 		} catch (error) {
 			console.log(error);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
 	const fetchRandom = async () => {
+		setIsLoading(true);
 		try {
 			const randomMeal = await fetchMeal("random");
 			console.log(randomMeal);
@@ -33,6 +41,8 @@ function App() {
 			setMeals((meals) => [...meals, ...randomMeal]);
 		} catch (error) {
 			console.log(error);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -43,6 +53,7 @@ function App() {
 	useEffect(() => {
 		if (query) {
 			fetchByQuery(query);
+			setFirstTime(false);
 		}
 	}, [query]);
 
@@ -67,18 +78,20 @@ function App() {
 
 	return (
 		<>
+			{isLoading && <Loader></Loader>}
 			{modal && <Modal data={modalData[0]} onClickHandler={closeModalwithClick}></Modal>}
 			<Header>
 				<Searchbar onChangeHandler={_debounce(setQueryFromSerchbar, 600)}></Searchbar>
 			</Header>
 			<main>
-				{query === "" && <h1>Get amazing recipes for cooking</h1>}
+				{firstTime && <h1>Get amazing recipes for cooking...</h1>}
 				<section>
 					<div className="container">
 						<MealsList data={meals} onClickHandler={openModalwithClick}></MealsList>
 					</div>
 				</section>
 			</main>
+			<Footer></Footer>
 		</>
 	);
 }
