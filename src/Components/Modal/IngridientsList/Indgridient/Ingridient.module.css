@@ -6,7 +6,8 @@
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  transition: transform linear 200ms;
+  transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .ingridient:hover,
