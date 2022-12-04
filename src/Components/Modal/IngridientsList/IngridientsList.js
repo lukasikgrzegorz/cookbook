@@ -1,15 +1,13 @@
 import React from "react";
 import css from "./IngridientsList.module.css";
+import Ingridient from "./Indgridient/Ingridient";
 
 const IngridientsList = ({ data }) => {
 	return (
-		<ul className={css["list"]}>
+		<ul className={css["ingridients-list"]}>
 			{data.map((ingridient, index) => {
 				return (
-					<li key={index} className={css["item"]}>
-						<span className={css["item__name"]}>{ingridient.name}</span>
-						<span className={css["item__mesaure"]}>{ingridient.mesaure}</span>
-					</li>
+					<Ingridient key={index} name={ingridient.name} mesaure={ingridient.mesaure}></Ingridient>
 				);
 			})}
 		</ul>

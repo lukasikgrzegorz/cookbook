@@ -5,6 +5,7 @@ import _debounce from "lodash.debounce";
 import Loader from "./Components/Loader/Loader";
 import Header from "./Components/Header/Header";
 import Searchbar from "./Components/Searchbar/Searchbar";
+import Title from "./Components/Title/Title";
 import MealsList from "./Components/MealsList/MealsList";
 import Modal from "./Components/Modal/Modal";
 import Footer from "./Components/Footer/Footer";
@@ -84,7 +85,7 @@ function App() {
 				<Searchbar onChangeHandler={_debounce(setQueryFromSerchbar, 600)}></Searchbar>
 			</Header>
 			<main>
-				{firstTime && <h1>Get amazing recipes for cooking...</h1>}
+				{firstTime && <Title>Get amazing recipes for cooking...</Title>}
 				<section>
 					<div className="container">
 						<MealsList data={meals} onClickHandler={openModalwithClick}></MealsList>

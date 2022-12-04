@@ -1,0 +1,29 @@
+.ingridient {
+  flex-basis: 100%;
+  background-color: #F3F2F2;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  transition: transform linear 200ms;
+}
+
+.ingridient:hover,
+.ingridient:focus {
+  transform: scale(1.02);
+}
+
+@media screen and (min-width: 468px) {
+  .ingridient {
+    flex-basis: calc((100% - 5px) / 2);
+  }
+}
+
+.ingridient__name {
+  font-weight: 500;
+}
+
+.ingridient__mesaure {
+  color: #6C6C6C;
+}

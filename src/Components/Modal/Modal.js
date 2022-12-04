@@ -56,7 +56,7 @@ const Modal = ({ onClickHandler, data }) => {
 						{data.strCategory}, {data.strArea}
 					</p>
 				</div>
-				<IngridientsList data={ingridientsList}></IngridientsList>
+				<IngridientsList data={ingridientsList}/>
 				<div className={css["modal__how-to-prepare"]}>
 					<p>{instruction ? data.strInstructions.slice(0, 700) + "..." : data.strInstructions}</p>
 					{data.strInstructions.length > 600 && (
