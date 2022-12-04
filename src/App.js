@@ -1,13 +1,16 @@
 import "./App.css";
+import { useEffect, useState } from "react";
 import { fetchMeal } from "./Services/api";
 import _debounce from "lodash.debounce";
 import Searchbar from "./Components/Searchbar/Searchbar";
-import { useEffect, useState } from "react";
 import MealsList from "./Components/MealsList/MealsList";
+import Modal from "./Components/Modal/Modal";
 
 function App() {
 	const [query, setQuery] = useState("");
 	const [meals, setMeals] = useState([]);
+	const [modal, openModal] = useState(false);
+	const [modalData, setModalData] = useState([]);
 
 	const fetchByQuery = async (query) => {
 		try {
@@ -47,8 +50,22 @@ function App() {
 		fetchRandom();
 	}, []);
 
+	const openModalwithClick = (e) => {
+		const modalDataFromItem = meals.filter((meal) => meal.idMeal === e.currentTarget.id);
+		setModalData([]);
+		setModalData((data) => [...data, ...modalDataFromItem]);
+		openModal(true);
+		document.body.style.overflow = "hidden";
+	};
+
+	const closeModalwithClick = () => {
+		openModal(false);
+		document.body.style.overflow = "";
+	};
+
 	return (
 		<main>
+			{modal && <Modal data={modalData[0]} onClickHandler={closeModalwithClick}></Modal>}
 			<section>
 				<div className="container">
 					<Searchbar onChangeHandler={_debounce(setQueryFromSerchbar, 600)}></Searchbar>
@@ -56,7 +73,7 @@ function App() {
 			</section>
 			<section>
 				<div className="container">
-					<MealsList data={meals}></MealsList>
+					<MealsList data={meals} onClickHandler={openModalwithClick}></MealsList>
 				</div>
 			</section>
 		</main>

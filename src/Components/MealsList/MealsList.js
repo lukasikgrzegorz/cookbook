@@ -2,7 +2,7 @@ import React from "react";
 import Meal from "./Meal/Meal";
 import css from "./MealsList.module.css";
 
-const MealsList = ({ data }) => {
+const MealsList = ({ data, onClickHandler }) => {
 	return (
 		<ul className={css["mealslist"]}>
 			{data.map((meal) => {
@@ -14,6 +14,7 @@ const MealsList = ({ data }) => {
 						imgSrc={meal.strMealThumb}
 						category={meal.strCategory}
 						country={meal.strArea}
+						onClickHandler={onClickHandler}
 					></Meal>
 				);
 			})}

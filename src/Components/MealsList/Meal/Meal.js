@@ -1,9 +1,9 @@
 import React from "react";
 import css from "./Meal.module.css";
 
-const Meal = ({ imgSrc, title, category, country, id }) => {
+const Meal = ({ imgSrc, title, category, country, id, onClickHandler }) => {
 	return (
-		<li className={css["meal"]} id={id}>
+		<li className={css["meal"]} id={id} onClick={onClickHandler}>
 			<div className={css["meal__image-wrapper"]}>
 				<img className={css["meal__image-wrapper"]} src={imgSrc}></img>
 			</div>
