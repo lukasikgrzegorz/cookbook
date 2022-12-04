@@ -58,9 +58,11 @@ function App() {
 		document.body.style.overflow = "hidden";
 	};
 
-	const closeModalwithClick = () => {
-		openModal(false);
-		document.body.style.overflow = "";
+	const closeModalwithClick = (e) => {
+		if (e.target.id === "backdrop" || e.currentTarget.id === "closeBtn") {
+			openModal(false);
+			document.body.style.overflow = "";
+		}
 	};
 
 	return (

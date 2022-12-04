@@ -1,0 +1,30 @@
+.list{
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.item{
+  flex-basis: 100%;
+  background-color: #F3F2F2;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.item__name{
+  font-weight: 500;
+}
+
+.item__mesaure {
+  color: #6C6C6C;
+}
+
+@media screen and (min-width: 768px) {
+  .item {
+    flex-basis: calc((100% - 5px) / 2);
+  }
+}
