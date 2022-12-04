@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { fetchMeal } from "./Services/api";
 import _debounce from "lodash.debounce";
+import Header from "./Components/Header/Header";
 import Searchbar from "./Components/Searchbar/Searchbar";
 import MealsList from "./Components/MealsList/MealsList";
 import Modal from "./Components/Modal/Modal";
@@ -65,19 +66,20 @@ function App() {
 	};
 
 	return (
-		<main>
+		<>
 			{modal && <Modal data={modalData[0]} onClickHandler={closeModalwithClick}></Modal>}
-			<section>
-				<div className="container">
-					<Searchbar onChangeHandler={_debounce(setQueryFromSerchbar, 600)}></Searchbar>
-				</div>
-			</section>
-			<section>
-				<div className="container">
-					<MealsList data={meals} onClickHandler={openModalwithClick}></MealsList>
-				</div>
-			</section>
-		</main>
+			<Header>
+				<Searchbar onChangeHandler={_debounce(setQueryFromSerchbar, 600)}></Searchbar>
+			</Header>
+			<main>
+				{query === "" && <h1>Get amazing recipes for cooking</h1>}
+				<section>
+					<div className="container">
+						<MealsList data={meals} onClickHandler={openModalwithClick}></MealsList>
+					</div>
+				</section>
+			</main>
+		</>
 	);
 }
 

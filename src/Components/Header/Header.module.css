@@ -1,0 +1,47 @@
+.header{
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  background-color: #F3F2F2;
+  margin-bottom: 15px;
+}
+
+.slogan{
+  font-size: 30px;
+  font-weight: 600;
+  margin:auto;
+  text-align: center;
+  max-width: 350px;
+}
+
+.logo{
+  position: relative;
+  font-size: 28px;
+  font-weight: 500;
+  transition: transform 200ms;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 1280px) {
+  .logo{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    margin-bottom: 0px;
+    font-size: 24px;
+  }
+
+}
+
+.logo:hover,
+.logo:focus{
+  transform: scale(1.05);
+}
+
+.logo--accent{
+  font-weight: 700;
+  color: #EC7B7B;
+}
