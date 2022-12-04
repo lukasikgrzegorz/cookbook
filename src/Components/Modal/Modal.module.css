@@ -8,7 +8,20 @@
   justify-content: center;
   backdrop-filter: blur(10px);
   overflow: auto;
+  opacity: 1;
+  animation-name: fadeIn;
+  animation-duration: 700ms;
 }
+
+ @keyframes fadeIn {
+   0% {
+     opacity: 0;
+   }
+
+   100% {
+     opacity: 1;
+   }
+ }
 
 .close-btn{
   position: absolute;
@@ -25,12 +38,19 @@
   border: none;
   border-radius: 50%;
   transition: transform 0.3s;
-   
 }
+
 .close-btn:focus,
 .close-btn:hover{
   transform: scale(1.2);
 }
+
+.video-btn{
+  composes: close-btn;
+  top: 20px;
+  left: 20px;
+}
+
 
 .close-icon{
   width: 32px;
@@ -38,9 +58,8 @@
   fill: currentColor;
 }
 
+
 .modal{
-  margin: auto;
-  min-width: 280px;
   max-width: 600px;
   width: 100%;
   background-color: #ffffff;
@@ -101,10 +120,6 @@
   text-align: center;
 }
 
-.modal__subtitle {
-  font-size: 16px;
-}
-
 .modal__how-to-prepare{
   display: flex;
   flex-direction: column;
@@ -112,3 +127,27 @@
   font-size: 14px;
   margin-top: 20px ;
 }
+
+.more-btn { 
+  padding: 15px;
+  width: 200px;
+  margin: auto;
+  margin-top: 15px;
+  background-color: #EC7B7B;
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+.more-btn:hover {
+  transform: scale(1.05);
+}
+
+
+

@@ -16,7 +16,6 @@ function App() {
 		try {
 			const fetchedMeals = await fetchMeal("name", query);
 			if (fetchedMeals) {
-				console.log(fetchedMeals);
 				setMeals([]);
 				setMeals((meals) => [...meals, ...fetchedMeals]);
 			}

@@ -5,7 +5,7 @@ const Meal = ({ imgSrc, title, category, country, id, onClickHandler }) => {
 	return (
 		<li className={css["meal"]} id={id} onClick={onClickHandler}>
 			<div className={css["meal__image-wrapper"]}>
-				<img className={css["meal__image-wrapper"]} src={imgSrc}></img>
+				<img className={css["meal__image-wrapper"]} src={imgSrc} alt={title}></img>
 			</div>
 			<div className={css["meal__text-wrapper"]}>
 				<p className={css["meal__title"]}>{title}</p>

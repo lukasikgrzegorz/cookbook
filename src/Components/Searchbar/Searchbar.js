@@ -8,6 +8,7 @@ const Searchbar = ({ onChangeHandler }) => {
 			type="text"
 			name="query"
 			placeholder="Search recpies"
+			autoComplete="off"
 			onChange={onChangeHandler}
 		></input>
 	);

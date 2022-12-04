@@ -13,18 +13,24 @@
   display: flex;
   justify-content: space-between;
   font-size: 14px;
+  transition: transform linear 200ms;
 }
 
-.item__name{
+.item:hover,
+.item:focus{
+  transform: scale(1.02);
+}
+
+@media screen and (min-width: 468px) {
+  .item {
+    flex-basis: calc((100% - 5px) / 2);
+  }
+}
+
+.item__name {
   font-weight: 500;
 }
 
 .item__mesaure {
   color: #6C6C6C;
-}
-
-@media screen and (min-width: 768px) {
-  .item {
-    flex-basis: calc((100% - 5px) / 2);
-  }
 }
