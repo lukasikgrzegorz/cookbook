@@ -5,6 +5,7 @@ import _debounce from "lodash.debounce";
 import Loader from "./Components/Loader/Loader";
 import Header from "./Components/Header/Header";
 import Searchbar from "./Components/Searchbar/Searchbar";
+import FavouriteButton from "./Components/FavouriteButton/FavouriteButton";
 import Title from "./Components/Title/Title";
 import MealsList from "./Components/MealsList/MealsList";
 import Modal from "./Components/Modal/Modal";
@@ -17,6 +18,7 @@ function App() {
 	const [modalData, setModalData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [firstTime, setFirstTime] = useState(true);
+	const KEY = "favourite";
 
 	const fetchByQuery = async (query) => {
 		setIsLoading(true);
@@ -63,11 +65,13 @@ function App() {
 	}, []);
 
 	const openModalwithClick = (e) => {
-		const modalDataFromItem = meals.filter((meal) => meal.idMeal === e.currentTarget.id);
-		setModalData([]);
-		setModalData((data) => [...data, ...modalDataFromItem]);
-		openModal(true);
-		document.body.style.overflow = "hidden";
+		if (e.target.nodeName !== "BUTTON") {
+			const modalDataFromItem = meals.filter((meal) => meal.idMeal === e.currentTarget.id);
+			setModalData([]);
+			setModalData((data) => [...data, ...modalDataFromItem]);
+			openModal(true);
+			document.body.style.overflow = "hidden";
+		}
 	};
 
 	const closeModalwithClick = (e) => {
@@ -77,18 +81,54 @@ function App() {
 		}
 	};
 
+	const addToFavourite = (e) => {
+		const ID = e.target.parentNode.parentNode.id;
+		const dataFromItem = meals.filter((meal) => meal.idMeal === ID);
+		if (localStorage.getItem(KEY)) {
+			const savedFavourites = JSON.parse(localStorage.getItem(KEY));
+			const isInBase = savedFavourites.some((item) => item.idMeal === ID);
+			let updatedFavourites = [];
+			if (!isInBase) {
+				updatedFavourites = savedFavourites.concat(dataFromItem);
+			} else {
+				updatedFavourites = savedFavourites.filter((item) => item.idMeal !== ID);
+			}
+			console.log(updatedFavourites);
+			localStorage.setItem(KEY, JSON.stringify(updatedFavourites));
+			if (updatedFavourites.length === 0) {
+				localStorage.clear();
+			}
+		} else {
+			localStorage.setItem(KEY, JSON.stringify(dataFromItem));
+		}
+	};
+
+	const showFavourite = () => {
+		if (localStorage.getItem(KEY)) {
+			const savedFavourites = JSON.parse(localStorage.getItem(KEY));
+			setMeals([]);
+			setMeals((meals) => [...meals, ...savedFavourites]);
+			setFirstTime(false);
+		}
+	};
+
 	return (
 		<>
 			{isLoading && <Loader></Loader>}
 			{modal && <Modal data={modalData[0]} onClickHandler={closeModalwithClick}></Modal>}
 			<Header>
 				<Searchbar onChangeHandler={_debounce(setQueryFromSerchbar, 600)}></Searchbar>
+				<FavouriteButton onClickHandler={showFavourite}></FavouriteButton>
 			</Header>
 			<main>
 				{firstTime && <Title>Get amazing recipes for cooking...</Title>}
 				<section>
 					<div className="container">
-						<MealsList data={meals} onClickHandler={openModalwithClick}></MealsList>
+						<MealsList
+							data={meals}
+							onClickHandler={openModalwithClick}
+							likeHandler={addToFavourite}
+						></MealsList>
 					</div>
 				</section>
 			</main>

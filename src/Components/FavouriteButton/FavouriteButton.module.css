@@ -1,0 +1,33 @@
+.favaourite-button{
+  position: relative;
+  margin-top: 10px;
+  border:none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  gap: 3px;
+  transition: transform 0.2s;
+  color: #EC7B7B;
+}
+
+@media screen and (min-width: 1280px) {
+  .favaourite-button{
+    margin-top: 0px;
+    position: absolute;
+    right: 15px;
+  }
+  
+}
+
+.favaourite-button:hover{
+  transform: scale(1.05);
+}
+
+.favaourite-button__icon{
+  width: 28px;
+  height: 28px;
+  background: url(./Img/heart.svg);
+}
