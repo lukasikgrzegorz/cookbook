@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/cookbook/static/css/main.d3d409d0.css",
-    "main.js": "/cookbook/static/js/main.dae168d4.js",
+    "main.css": "/cookbook/static/css/main.7a07a65e.css",
+    "main.js": "/cookbook/static/js/main.812fee70.js",
+    "static/media/heart-o.svg": "/cookbook/static/media/heart-o.22ec297dec0b0aafc139.svg",
     "index.html": "/cookbook/index.html",
-    "main.d3d409d0.css.map": "/cookbook/static/css/main.d3d409d0.css.map",
-    "main.dae168d4.js.map": "/cookbook/static/js/main.dae168d4.js.map"
+    "static/media/heart.svg": "/cookbook/static/media/heart.7450f9fb3bb64d7cdfb6.svg",
+    "main.7a07a65e.css.map": "/cookbook/static/css/main.7a07a65e.css.map",
+    "main.812fee70.js.map": "/cookbook/static/js/main.812fee70.js.map"
   },
   "entrypoints": [
-    "static/css/main.d3d409d0.css",
-    "static/js/main.dae168d4.js"
+    "static/css/main.7a07a65e.css",
+    "static/js/main.812fee70.js"
   ]
 }
