@@ -2,7 +2,9 @@
   position: relative;
   margin-top: 10px;
   border:none;
-  background-color: transparent;
+  background-color: #EC7B7B;
+  color: #ffffff;
+  padding: 5px 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -10,7 +12,8 @@
   font-weight: 600;
   gap: 3px;
   transition: transform 0.2s;
-  color: #EC7B7B;
+  border-radius: 5px;
+ 
 }
 
 @media screen and (min-width: 1280px) {

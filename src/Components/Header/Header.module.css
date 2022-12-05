@@ -6,6 +6,13 @@
   justify-content: center;
   align-items:center;
   background-color: #F3F2F2;
+  margin-bottom: 15px;
+}
+
+@media screen and (min-width: 1280px) {
+  .header{
+    margin-bottom: 0px;
+  }
 }
 
 .slogan{
