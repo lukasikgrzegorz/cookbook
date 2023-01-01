@@ -2,7 +2,6 @@
 A
 pplication that allows you to search for recipes from around the world.
 
-<br>
 https://lukasikgrzegorz.github.io/cookbook
 
 ## 🚀 Run Locally
